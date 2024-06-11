@@ -7,7 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:country-app": "node dist/country-app/server/server.mjs"
+    "serve:ssr:country-app": "node dist/country-app/server/server.mjs",
+    "build:href": "ng build --base-href ./",
+    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist",
+    "delete:docs": "del docs",
+    "copy:dist": "copyfiles dist/gif-app/browser/* ./docs -f"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +43,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.2"
+    "typescript": "~5.4.2",
+      "copyfiles": "^2.4.1",
+    "del-cli": "^5.1.0"
   }
 }
