@@ -1,7 +1,35 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+} from '@angular/router';
 
-const routes: Routes = [];
+import {
+  AboutPageComponent,
+} from './shared/pages/aboutPage/aboutPage.component';
+import {
+  ContactPageComponent,
+} from './shared/pages/contactPage/contactPage.component';
+import { HomePageComponent } from './shared/pages/homePage/homePage.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomePageComponent
+  },
+  {
+    path: 'about',
+    component: AboutPageComponent
+  },
+  {
+    path:'contact' ,
+    component: ContactPageComponent
+  },
+  {
+    path: '*',
+    component: HomePageComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
