@@ -10,13 +10,12 @@ import {
 import {
   ContactPageComponent,
 } from './shared/pages/contactPage/contactPage.component';
-import { HomePageComponent } from './shared/pages/homePage/homePage.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomePageComponent
-  },
+  // {
+  //   path: '',
+  //   component: HomePageComponent
+  // },
   {
     path: 'about',
     component: AboutPageComponent
@@ -31,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: '*',
-    component: HomePageComponent
+    redirectTo:'countries'
   }
 ];
 
