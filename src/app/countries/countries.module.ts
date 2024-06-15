@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
+import {
+  CountryTableComponent,
+} from './components/countryTable/countryTable.component';
 import { CountriesRoutingModule } from './countries-routing.module';
 import {
   ByCapitalPageComponent,
@@ -21,7 +24,8 @@ import {
     ByCapitalPageComponent,
     ByCountryPageComponent,
     ByRegionPageComponent,
-    CountryPageComponent
+    CountryPageComponent,
+    CountryTableComponent
   ],
   imports: [
     CommonModule,

@@ -72,6 +72,8 @@ export interface Country {
   postalCode:   PostalCode;
 }
 
+
+
 export interface CapitalInfo {
   latlng: number[];
 }
@@ -166,7 +168,10 @@ export interface CoatOfArms {
 
 export interface Currencies {
   MXN: Mxn;
+  DOP: any;
+
 }
+
 
 export interface Mxn {
   name:   string;

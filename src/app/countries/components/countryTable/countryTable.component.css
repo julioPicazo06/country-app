@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+
+img{
+  width: 50px;
+}
+
+.pointer{
+  cursor: pointer;
+}
