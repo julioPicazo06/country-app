@@ -9,6 +9,7 @@ import {
 
 import { switchMap } from 'rxjs';
 
+import { CountryID } from '../../interfaces/countryId';
 import { CountriesService } from '../../services/countries.service';
 
 @Component({
@@ -18,7 +19,7 @@ import { CountriesService } from '../../services/countries.service';
 })
 export class CountryPageComponent implements OnInit {
 
-
+  public country?: CountryID;
   constructor(
    private activatedRoute: ActivatedRoute,
    private countriesService:CountriesService,
@@ -32,8 +33,7 @@ export class CountryPageComponent implements OnInit {
               if(!country){
                 return this.router.navigateByUrl('');
               }
-              console.log(country);
-
+              this.country = country;
               return;
         });
 
