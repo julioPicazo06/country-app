@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import {
   catchError,
+  delay,
   map,
   Observable,
   of,
@@ -20,6 +21,14 @@ export class CountriesService {
     private http: HttpClient
   ) { }
 
+  private getCountriesRequest( url:string ): Observable<Country[]>{
+    return this.http.get<Country[]>( url )
+    .pipe(
+      catchError( () => of([])),
+      delay(1000)
+    );
+  }
+
 
   searchCountryByAlphaCode(id :string): Observable<CountryID | null> {
     const url:string = `${this.apiUrl}/alpha/${id}`;
@@ -32,9 +41,7 @@ export class CountriesService {
 
   searchCountries (term: string , type:string): Observable<Country[]> {
     const url:string = `${this.apiUrl}/${type}/${term}`;
-    return this.http.get<Country[]>(url).pipe(
-      catchError( err => of([]))
-    )
+    return this.getCountriesRequest(url);
   }
 
 
