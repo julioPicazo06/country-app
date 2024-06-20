@@ -7,14 +7,14 @@ import {
   selector: 'shared-loading-spinner',
 
   templateUrl: './loadingSpinner.component.html',
-  styleUrl: './loadingSpinner.component.sass',
+  styleUrl: './loadingSpinner.component.css',
 })
 export class LoadingSpinnerComponent {
   @Input()
   public searchTitle?: string ;
 
   get title (): string {
-    return `Buscando ${this.searchTitle}` || 'Buscando...';
+    return `${this.searchTitle}` || 'Buscando...';
   }
 
 }

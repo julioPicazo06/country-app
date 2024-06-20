@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 
 import {
   catchError,
-  delay,
   map,
   Observable,
   of,
@@ -24,8 +23,7 @@ export class CountriesService {
   private getCountriesRequest( url:string ): Observable<Country[]>{
     return this.http.get<Country[]>( url )
     .pipe(
-      catchError( () => of([])),
-      delay(1000)
+      catchError( () => of([]))
     );
   }
 

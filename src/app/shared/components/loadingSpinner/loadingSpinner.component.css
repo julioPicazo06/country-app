@@ -1,0 +1,19 @@
+
+  .spinner-cointainer{
+  position : fixed;
+  bottom : 1.5rem;
+  right : 1.5rem;
+  background-color: black;
+  color : white;
+  padding: 0.5rem 1rem;
+  border-radius: 2.0rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+span{
+  margin-left: 0.5rem;
+}
+
+
