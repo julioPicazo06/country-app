@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -16,7 +17,7 @@ import {
   templateUrl: './search-box.component.html',
   styleUrl: './search-box.component.scss'
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit , OnDestroy {
 
   private debuncer: Subject<string> = new Subject<string>();
 
@@ -39,6 +40,9 @@ export class SearchBoxComponent implements OnInit {
       });
   }
 
+  ngOnDestroy(): void {
+    this.debuncer.unsubscribe();
+  }
   public emitValue(value: string): void {
     this.onValue.emit(value);
   }
