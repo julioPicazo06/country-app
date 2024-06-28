@@ -10,16 +10,18 @@ import {
 import {
   debounceTime,
   Subject,
+  Subscription,
 } from 'rxjs';
 
 @Component({
   selector: 'shared-search-box',
   templateUrl: './search-box.component.html',
-  styleUrl: './search-box.component.scss'
+  styleUrl: './search-box.component.scss',
 })
-export class SearchBoxComponent implements OnInit , OnDestroy {
-
+export class SearchBoxComponent implements OnInit, OnDestroy {
   private debuncer: Subject<string> = new Subject<string>();
+
+  private debouncerSuscription?: Subscription;
 
   @Input()
   public placeholder: string = '';
@@ -28,29 +30,24 @@ export class SearchBoxComponent implements OnInit , OnDestroy {
   public onValue: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  public onDebounce : EventEmitter<string> = new EventEmitter<string>();
+  public onDebounce: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
-      this.debuncer
-      .pipe(
-        debounceTime(300)
-      )
+  this.debouncerSuscription =  this.debuncer
+      .pipe(debounceTime(300))
       .subscribe((value: string) => {
-        this.onDebounce.emit(value);
-      });
+      this.onDebounce.emit(value);
+    });
   }
 
   ngOnDestroy(): void {
-    this.debuncer.unsubscribe();
+   this.debouncerSuscription?.unsubscribe();
   }
   public emitValue(value: string): void {
     this.onValue.emit(value);
   }
 
-  onKeyPress(searchTErm: string){
-   this.debuncer.next(searchTErm);
+  onKeyPress(searchTErm: string) {
+    this.debuncer.next(searchTErm);
   }
-
-
-
 }

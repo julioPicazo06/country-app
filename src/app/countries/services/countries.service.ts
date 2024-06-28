@@ -15,6 +15,21 @@ import { CountryID } from '../interfaces/countryId';
 export class CountriesService {
   private apiUrl:string = 'https://restcountries.com/v3.1';
 
+  public cacheStore = {
+    byCapital: {
+      term: '',
+      countries: []
+    },
+    byCountries: {
+      term: '',
+      countries: []
+    },
+    byRegion: {
+      term: '',
+      countries: []
+    }
+  }
+
 
   constructor(
     private http: HttpClient
