@@ -7,7 +7,9 @@
    <shared-search-box
     [placeholder]="'Buscar capital'"
     (onDebounce)="searchByCapital($event)"
+    [intialValue]="intialValue"
    ></shared-search-box>
+   {{intialValue}}
   </div>
 </div>
 

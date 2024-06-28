@@ -6,8 +6,10 @@ import {
   map,
   Observable,
   of,
+  tap,
 } from 'rxjs';
 
+import { cacheStore } from '../interfaces/cache-store.interface';
 import { Country } from '../interfaces/country';
 import { CountryID } from '../interfaces/countryId';
 
@@ -15,7 +17,7 @@ import { CountryID } from '../interfaces/countryId';
 export class CountriesService {
   private apiUrl:string = 'https://restcountries.com/v3.1';
 
-  public cacheStore = {
+  public cacheStore : cacheStore = {
     byCapital: {
       term: '',
       countries: []
@@ -25,7 +27,7 @@ export class CountriesService {
       countries: []
     },
     byRegion: {
-      term: '',
+      region: '',
       countries: []
     }
   }
@@ -35,10 +37,15 @@ export class CountriesService {
     private http: HttpClient
   ) { }
 
-  private getCountriesRequest( url:string ): Observable<Country[]>{
-    return this.http.get<Country[]>( url )
+  private getCountriesRequest( term:string ): Observable<Country[]>{
+    return this.http.get<Country[]>( term )
     .pipe(
-      catchError( () => of([]))
+      tap(
+        countries => this.cacheStore.byCapital = {
+          term ,
+          countries
+        }
+        )
     );
   }
 
